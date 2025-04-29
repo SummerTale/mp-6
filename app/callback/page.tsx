@@ -1,7 +1,7 @@
 import { redirect } from 'next/navigation';
 import '../../app/globals.css';
 
-export default async function CallbackPage({searchParams,}:{searchParams:{ code?: string};}){
+export default async function CallbackPage({searchParams,}:{searchParams:{ code?: string | string[]};}){
   const params = await searchParams;
   const code = params.code;
 
