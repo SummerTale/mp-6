@@ -1,9 +1,14 @@
 import { redirect } from 'next/navigation';
 import '../../app/globals.css';
 
-export default async function CallbackPage({searchParams,}:{searchParams:{ code?: string | undefined};}){
+export default async function CallbackPage({searchParams,}:{searchParams: { [key: string]: string | string[] | undefined };
+}) {
   const params = await searchParams;
-  const code = params.code;
+  const code = typeof params.code === 'string'
+    ? params.code
+    : Array.isArray(params.code)
+    ? params.code[0]
+    : undefined;
 
   if (!code){
     redirect('/login');
