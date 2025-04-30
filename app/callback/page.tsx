@@ -1,8 +1,9 @@
 import { redirect } from 'next/navigation';
 import '../../app/globals.css';
-
-export default async function CallbackPage({searchParams,}:{searchParams: { [key: string]: string | string[] | undefined };
-}) {
+type CallbackPageProps = {
+    searchParams: Record<string, string | string[] | undefined>;
+  };
+export default async function CallbackPage({ searchParams }: CallbackPageProps) {
   const params = await searchParams;
   const code = typeof params.code === 'string'
     ? params.code
